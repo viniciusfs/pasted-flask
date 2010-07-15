@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>Pasted</title>
+</head>
+
+<body>
+
+<div id="header">
+    <div id="wrapper">
+        <div id="logo">
+            <h1>Pasted</h1>
+            <p>Yeah! Just another pastebin clone. Enjoy!</p>
+        </div>
+        <div id="menu">
+            <ul class="navigation">
+                <li><a href="/" title="Create a new paste">New</a></li>
+                <li><a href="/latest" title="List latest pastes">Latest</a></li>
+                <li><a href="/about" title="Everything about Pasted universe (nothing much in fact)">About</a></li>
+                <li><a href="/help" title="Confused? Looking for a friend? Click Help!">?</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div id="wrapper">
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Paste <a href="{{ url_for('view', paste_id=paste.id) }}">{{ paste.id|safe }}</a></h2>
+
+<div id="control-bar">
+    &#8227; <a href="{{ url_for('view', paste_id=paste.id, mode='raw') }}" title="see a plain text version">text version</a>
+    &#8227; <a href="{{ url_for('add_paste', paste_id=paste.id) }}" title="create a new paste based on this one">reply</a>
+    {% if paste.parent %}
+        &#8227; paste in reply to <a href="{{ url_for('view', paste_id=paste.parent) }}" title="see original paste">{{ paste.parent|safe }}</a>
+        &#8227; <a href="{{ url_for('diff', parent_id=paste.parent, paste_id=paste.id) }}" title="see differences between #{{ paste.parent|safe }} and #{{ paste.id|safe }}">diff</a>
+    {% endif %}
+</div>
+
+<pre><code>{{ paste.code }}</code></pre>
+{% endblock %}

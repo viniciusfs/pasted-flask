@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Differences between pastes</h2>
+
+<div id="control-bar">
+        &#8227; differences between pastes <a href="{{ url_for('view', paste_id=parent.id) }}" title="see paste">#{{ parent.id|safe }}</a> and <a href="{{ url_for('view', paste_id=paste.id) }}" title="see paste">#{{ parent.id|safe }}</a>
+        &#8227; <a href="{{ url_for('diff', parent_id=parent.id, paste_id=paste.id, mode='raw') }}" title="download an unified diff file">unified diff</a>
+</div>
+<table class="diff">
+{% for line in diff.lines %}
+    <tr class="{{ line.action }}">
+        <td class="line-number">{{ line.old_line }}</td>
+        <td class="line-number">{{ line.new_line }}</td>
+        <td class="content">{{ line.content }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

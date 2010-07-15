@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Latest 10 pastes</h2>
+
+{% for paste in pastes %}
+    <div id="control-bar">
+        &#8227; Paste <a href="{{ url_for('view', paste_id=paste.id) }}" title="see paste #{{ paste.id|safe }}">#{{ paste.id|safe }}</a>
+    </div>
+    <pre><code>{{ paste.code }}</code></pre>
+    <br />
+{% endfor %}
+{% endblock %}

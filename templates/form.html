@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="form">
+    <form method="post" action="add">
+    {% if original %}
+        <p><textarea name="code" rows="10" cols="80">{{ original.code }}</textarea></p>
+        <input type="hidden" name="parent" class="hide" value="{{ original.id }}" />
+    {% else %}
+        <p><textarea name="code" rows="10" cols="80"></textarea></p>
+        <input type="hidden" name="parent" class="hide" value="" />
+    {% endif %}
+    <p><input type="submit" value="Paste!" /></p>
+</div>
+</form>
+{% endblock %}
